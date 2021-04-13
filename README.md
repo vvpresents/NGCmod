@@ -20,7 +20,7 @@ from NGCmod import NGCmod
 ```
 доступны следующии функции:
 
-__NGCmod.parse_conf()__ - c нее начинается инициализация файла конфигурации, после чего из него извлекаются токены и список директив:
+__NGCmod.parse_conf()__ - c нее начинается инициализация файла конфигурации `nginx_conf_path_or_var`, после чего из него генерируются токены и список директив:
 ```py
 tokenized_conf, directives_list = NGCmod.parse_conf(nginx_conf_path_or_var, encoding = 'utf-8', tab_to_whitespace = 4)
 ```
@@ -28,21 +28,20 @@ __NGCmod.build_conf()__ - собирает из токенизированной
 ```py
 nginx_conf_string = NGCmod.build_conf(tokenized_conf, build_mode = 'minimal', indent_whitespaces_amount = 4, string_whitespaces_amount = 1)
 ```
-__NGCmod.find_directives()__ - возвращает список найденных директив  из списка директив `directives_list`, параметры поиска которых указываются в `target_directive_search_options`
+__NGCmod.find_directives()__ - возвращает список найденных директив  в списке директив `directives_list`, параметры поиска которых указываются в списке `target_directive_search_options`:
 ```py
 found_directives = NGCmod.find_directives( directives_list, target_directive_search_options)
 ```
-__NGCmod.add_directives()__ - добаляет одну или несколько простых директив `directives_and_arguments` Nginx после, перед, внутрь другой директивы, параметры которой которой указываются в `target_directives`.
-Возвращает токенизированную конфигурацию и список директив:
+__NGCmod.add_directives()__ - добаляет одну или несколько простых директив из списка `directives_and_arguments` Nginx перед, после, внутрь другой директивы, параметры которой которой указываются в списке `target_directives` - этот список должен содержать параметры одной директивы для однозначного определения позиции вставки новых директив. Функция возвращает токенизированную конфигурацию и список директив:
 ```py
 new_tokenized_conf, new_directives_list = NGCmod.add_directives(tokenized_conf, directives_list, target_directives, where, directives_and_arguments)
 ```
-__NGCmod.del_directives()__ - удаляет одну или несколько любых директив Nginx, параметры  которых указываются в `target_directives`.
-Возвращает токенизированную конфигурацию и список директив
+__NGCmod.del_directives()__ - удаляет одну или несколько любых директив Nginx, параметры  которых указываются в списке `target_directives`.
+Возвращает токенизированную конфигурацию и список директив:
 ```py
 new_tokenized_conf, new_directives_list = NGCmod.del_directives(tokenized_conf, directives_list, target_directives, multi_dir_deletion_mode = True)
 ```
-__NGCmod.get_directives_list_with_lines()__ - возвращает список директив с указанием реального местоположения в исходном файле конфигурации
+__NGCmod.get_directives_list_with_lines()__ - возвращает список директив `directives_list` с указанием реального местоположения в  файле конфигурации, которому соответствует токенизированная конфигурация `tokenized_conf`:
 ```py
 directives_list_with_lines = NGCmod.get_directives_list_with_lines(tokenized_conf, directives_list)
 ```
