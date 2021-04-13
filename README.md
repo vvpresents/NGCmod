@@ -1,5 +1,5 @@
 # __NGCmod__
-## _Простой Python модуль для парсинга, изменения и сборки конфигурационных файлов Nginx._
+## _Простой Python модуль для парсинга, изменения и сборки конфигурационных файлов Nginx_
 ### v1.0.1
 ----------------------
 ### __Установка__
@@ -50,6 +50,8 @@ directives_list_with_lines = NGCmod.get_directives_list_with_lines(tokenized_con
 Рассмотрим валидный конфигурационный файл Nginx c именем `test_server.conf`:
 ```sh
 # cat /etc/nginx/sites-available/test_server.conf
+```
+```sh
 server {
         listen  123.123.123.123:443 ssl;
         server_name     .film-club.com;
@@ -143,6 +145,8 @@ with open( '/tmp/NEW_test_server.conf', 'w') as f:
 Полученный файл:
 ```sh
 # cat /tmp/NEW_test_server.conf
+```
+```sh
 server {
     listen 123.123.123.123:443 ssl;
     server_name .film-club.com;
