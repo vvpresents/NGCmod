@@ -134,20 +134,20 @@ tokenized_conf, directives_list = NGCmod.add_directives(tokenized_conf, directiv
 found_dirs3 = NGCmod.find_directives(directives_list, [['main/server/', [], [{'listen':[], 'server_name':['.film-club.com']}] ], 'any', ['location'], 'any'])
 tokenized_conf, directives_list = NGCmod.del_directives(tokenized_conf, directives_list, found_dirs3)
 ```
-Соберем нашу  конфигурацию в строку, готовую для записи в файл:
+Соберем нашу конфигурацию в строку, готовую для записи, и запишем ее в файл:
 ```py
 builded = NGCmod.build_conf(tokenized_conf)
 with open( '/tmp/NEW_test_server.conf', 'w') as f:
     f.write(builded)
 ```
-Получим:
+Полученный файл:
 ```sh
 # cat /tmp/NEW_test_server.conf
 server {
     listen 123.123.123.123:443 ssl;
     server_name .film-club.com;
-    server_name .film-club-vip1.com;
-    server_name .film-club-vip2.com;
+    server_name .film-club-vip100.com;
+    server_name .film-club-vip200.com;
     ssl on;
     ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
     ssl_certificate /home/sys_user/tmp_ssl/0cinema-hd/film-club.com.crt;
